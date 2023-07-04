@@ -29,11 +29,9 @@ export default function Login() {
         setUserId(data.userId);
         return data;
       })
-      .then((res) => {
+      .then(() => {
         console.log(userId);
-        navigate("/dashboard", {
-          state: { userId: res.userId, token: res.token },
-        });
+        navigate("/dashboard");
       });
   };
 

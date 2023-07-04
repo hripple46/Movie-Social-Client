@@ -1,8 +1,25 @@
 import Login from "./Login";
 import "./App.css";
+import Dashboard from "./Dashboard";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function App() {
-  return <Login />;
+  const [token, setToken] = useState("");
+
+  // Check if user is logged in
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+  useEffect(() => {
+    setToken("");
+    const cookie = getCookie("token");
+    setToken(cookie);
+  }, []);
+
+  return token ? <Dashboard /> : <Login />;
 }
 
 export default App;

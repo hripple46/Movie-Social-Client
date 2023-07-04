@@ -1,21 +1,39 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import App from "./App";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [token, setToken] = useState("");
 
-  const location = useLocation();
-
   useEffect(() => {
-    setToken(document.cookie);
-  }, []);
-  console.log(location.state);
+    // Check if user is logged in
+    const cookie = getCookie("token");
+    setToken(cookie);
+  }, [token]);
+
+  //extract token from cookie
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+  //logout user by removing cookie and redirecting to '/'
+  async function logoutUser(e) {
+    e.preventDefault();
+    const eraseCookie = (document.cookie =
+      "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;");
+    await eraseCookie;
+    navigate("/");
+  }
 
   return (
     <div>
       <h1>You're Logged In</h1>
-      <p>Here's Your User ID + {location.state.userId}</p>
-      <p>Here's Your Token + {location.state.token}</p>
+      <h2>Token: {token}</h2>
+
+      <button onClick={logoutUser}>Logout</button>
     </div>
   );
 }
