@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
@@ -23,11 +24,16 @@ export default function Login() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        document.cookie = "token=" + data;
+        console.log("User ID" + data.userId);
+        document.cookie = "token=" + data.token;
+        setUserId(data.userId);
+        return data;
       })
-      .then(() => {
-        navigate("/dashboard");
+      .then((res) => {
+        console.log(userId);
+        navigate("/dashboard", {
+          state: { userId: res.userId, token: res.token },
+        });
       });
   };
 
