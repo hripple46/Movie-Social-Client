@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
   const loginUser = (e) => {
     e.preventDefault();
     fetch("http://localhost:3000/users/login", {
@@ -20,6 +24,10 @@ export default function Login() {
       })
       .then((data) => {
         console.log(data);
+        document.cookie = "token=" + data;
+      })
+      .then(() => {
+        navigate("/dashboard");
       });
   };
 
