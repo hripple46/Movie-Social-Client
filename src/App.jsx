@@ -16,7 +16,6 @@ function App() {
 
   //use hook to determine which componenet to render based on user status
   useEffect(() => {
-    setToken("");
     const cookie = getCookie("token");
     setToken(cookie);
   }, []);

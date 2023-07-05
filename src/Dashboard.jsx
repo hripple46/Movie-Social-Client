@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import App from "./App";
+import GroupList from "./GroupList";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check if user is logged in
@@ -13,8 +14,17 @@ export default function Dashboard() {
     setToken(cookie);
     const cookie2 = getCookie("userId");
     setUserId(cookie2);
-  }, [token, userId]);
+    setIsLoading(false); // After setting the token and userId, set isLoading to false
+  }, [navigate]);
 
+  if (isLoading) {
+    return null; // Or return a loading spinner here
+  }
+
+  if (!token || !userId) {
+    navigate("/");
+    return null;
+  }
   //extract token from cookie
   function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -40,6 +50,7 @@ export default function Dashboard() {
       <h2>Token: {token}</h2>
 
       <button onClick={logoutUser}>Logout</button>
+      <GroupList userId={userId} token={token} />
     </div>
   );
 }
