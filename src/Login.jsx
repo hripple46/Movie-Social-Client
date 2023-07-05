@@ -11,6 +11,7 @@ export default function Login() {
   //login user and set cookie
   const loginUser = (e) => {
     e.preventDefault();
+
     fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: {
@@ -22,18 +23,28 @@ export default function Login() {
       }),
     })
       .then((response) => {
+        if (!response.ok) {
+          throw new Error("Incorrect Credentials");
+        }
         return response.json();
       })
       .then((data) => {
+        console.log("Data: ", data);
         console.log("User ID" + data.userId);
         document.cookie = "token=" + data.token;
         document.cookie = "userId=" + data.userId;
         setUserId(data.userId);
+        navigate("/dashboard");
         return data;
       })
+
       .then(() => {
         console.log(userId);
         navigate("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/");
       });
   };
 
