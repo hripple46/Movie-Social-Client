@@ -8,6 +8,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
+  //login user and set cookie
   const loginUser = (e) => {
     e.preventDefault();
     fetch("http://localhost:3000/users/login", {
@@ -26,6 +27,7 @@ export default function Login() {
       .then((data) => {
         console.log("User ID" + data.userId);
         document.cookie = "token=" + data.token;
+        document.cookie = "userId=" + data.userId;
         setUserId(data.userId);
         return data;
       })

@@ -13,12 +13,15 @@ function App() {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
+
+  //use hook to determine which componenet to render based on user status
   useEffect(() => {
     setToken("");
     const cookie = getCookie("token");
     setToken(cookie);
   }, []);
 
+  //use hook to determine which componenet to render based on user status
   return token ? <Dashboard /> : <Login />;
 }
 
