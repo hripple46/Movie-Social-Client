@@ -23,11 +23,15 @@ export default function Login() {
       }),
     })
       .then((response) => {
+        //check if response is ok
         if (!response.ok) {
+          //throw error if incorrect credentials
           throw new Error("Incorrect Credentials");
         }
+        //if response is ok, return response
         return response.json();
       })
+      //set cookie and navigate to dashboard
       .then((data) => {
         console.log("Data: ", data);
         console.log("User ID" + data.userId);
@@ -42,6 +46,8 @@ export default function Login() {
         console.log(userId);
         navigate("/dashboard");
       })
+      //catch error and log it
+      //navigate to '/' if error
       .catch((err) => {
         console.log(err);
         navigate("/");

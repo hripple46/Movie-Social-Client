@@ -9,6 +9,7 @@ export default function GroupList({ userId, token }) {
   }, [userId, token]);
 
   const getGroups = () => {
+    //get groups from backend
     try {
       fetch("http://localhost:3000/users/" + userId + "/groups", {
         method: "GET",
@@ -25,6 +26,8 @@ export default function GroupList({ userId, token }) {
           setGroups(data);
         });
     } catch (err) {
+      //catch error and log it
+      //navigate to '/' if error
       console.log(err);
       navigate("/");
     }
