@@ -20,7 +20,7 @@ export default function Dashboard() {
   if (isLoading) {
     return null; // Or return a loading spinner here
   }
-
+  //if no token or userId, redirect to '/'
   if (!token || !userId) {
     navigate("/");
     return null;

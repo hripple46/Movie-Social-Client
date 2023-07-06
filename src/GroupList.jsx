@@ -22,8 +22,10 @@ export default function GroupList({ userId, token }) {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
-          setGroups(data);
+          return data.groupNames;
+        })
+        .then((groupNames) => {
+          setGroups(groupNames);
         });
     } catch (err) {
       //catch error and log it
