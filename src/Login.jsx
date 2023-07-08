@@ -55,29 +55,29 @@ export default function Login() {
   };
 
   return (
-    <div className="border-2 flex flex-col">
+    <div className="w-full h-full border-2 flex flex-col items-center justify-center">
       <h1>Login</h1>
-      <form className="grid grid-cols-2 grid-rows-4">
-        <label htmlFor="username">
+      <form className="w-1/3 justify-center flex flex-col">
+        <label className="w-full" htmlFor="username">
           Username:
           <input
-            className="bg-gray-200 rounded-md ml-2  justify-self-end"
+            className="w-full bg-gray-200 rounded-md   "
             onChange={(e) => setUsername(e.target.value)}
             type="text"
             name="username"
           />
         </label>
-        <label htmlFor="password">
+        <label className="w-full" htmlFor="password">
           Password:
           <input
-            className="bg-gray-200 rounded-md ml-2  justify-self-end"
+            className="w-full bg-gray-200 rounded-md "
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             name="password"
           />
         </label>
         <input
-          className="w-24 bg-green-200 rounded-md col-span-2 row-start-4 justify-self-center hover:cursor-pointer"
+          className="w-full bg-green-200 rounded-md mt-4 hover:cursor-pointer"
           onClick={loginUser}
           type="submit"
         />
