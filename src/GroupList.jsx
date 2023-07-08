@@ -61,7 +61,7 @@ export default function GroupList({ userId, token }) {
 
   return (
     <div>
-      <h1>Group List</h1>
+      <h1 className="text-2xl font-bold text-center mb-2">Groups</h1>
       <ul>
         {groups.map((group) => {
           return (

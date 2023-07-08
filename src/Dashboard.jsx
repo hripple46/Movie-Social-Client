@@ -6,6 +6,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,6 +17,24 @@ export default function Dashboard() {
     setUserId(cookie2);
     setIsLoading(false); // After setting the token and userId, set isLoading to false
   }, [navigate]);
+
+  const getUserName = (userId) => {
+    fetch("http://localhost:3000/users/" + userId, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + token,
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log("User", data);
+        setUsername(data.username);
+      });
+  };
+  getUserName(userId);
 
   if (isLoading) {
     return null; // Or return a loading spinner here
@@ -46,11 +65,22 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1>You're Logged In</h1>
-      <h2>Token: {token}</h2>
+      <div className="flex justify-between">
+        <h1>Hi, {username}</h1>
 
-      <button onClick={logoutUser}>Logout</button>
-      <GroupList userId={userId} token={token} />
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={logoutUser}
+        >
+          Logout
+        </button>
+      </div>
+      <div className="flex">
+        <GroupList userId={userId} token={token} />
+        {
+          //will add posts here
+        }
+      </div>
     </div>
   );
 }

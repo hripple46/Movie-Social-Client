@@ -55,12 +55,13 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="border-2 flex flex-col">
       <h1>Login</h1>
-      <form>
+      <form className="grid grid-cols-2 grid-rows-4">
         <label htmlFor="username">
           Username:
           <input
+            className="bg-gray-200 rounded-md ml-2  justify-self-end"
             onChange={(e) => setUsername(e.target.value)}
             type="text"
             name="username"
@@ -69,12 +70,17 @@ export default function Login() {
         <label htmlFor="password">
           Password:
           <input
+            className="bg-gray-200 rounded-md ml-2  justify-self-end"
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             name="password"
           />
         </label>
-        <input onClick={loginUser} type="submit" />
+        <input
+          className="w-24 bg-green-200 rounded-md col-span-2 row-start-4 justify-self-center hover:cursor-pointer"
+          onClick={loginUser}
+          type="submit"
+        />
       </form>
     </div>
   );
