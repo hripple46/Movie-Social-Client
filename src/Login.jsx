@@ -5,6 +5,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -50,6 +51,8 @@ export default function Login() {
       //navigate to '/' if error
       .catch((err) => {
         console.log(err);
+        setLoginError(err.message);
+
         navigate("/");
       });
   };
@@ -57,6 +60,7 @@ export default function Login() {
   return (
     <div className="w-full h-full border-2 flex flex-col items-center justify-center">
       <h1>Login</h1>
+      {loginError && <p>{loginError}</p>}
       <form className="w-1/3 justify-center flex flex-col">
         <label className="w-full" htmlFor="username">
           Username:
