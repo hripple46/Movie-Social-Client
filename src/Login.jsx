@@ -59,7 +59,6 @@ export default function Login() {
 
   return (
     <div className="w-full h-full border-2 flex flex-col items-center justify-center">
-      <h1>Login</h1>
       {loginError && <p>{loginError}</p>}
       <form className="w-1/3 justify-center flex flex-col">
         <label className="w-full" htmlFor="username">
@@ -84,8 +83,18 @@ export default function Login() {
           className="w-full bg-green-200 rounded-md mt-4 hover:cursor-pointer"
           onClick={loginUser}
           type="submit"
+          value="Login"
         />
       </form>
+      <div className="flex items-center mt-4">
+        <p>Don't have an account?</p>
+        <button
+          onClick={() => navigate("/signup")}
+          className="ml-1 bg-blue-200 pl-2 pr-2 rounded-md  hover:cursor-pointer"
+        >
+          Sign Up
+        </button>
+      </div>
     </div>
   );
 }
