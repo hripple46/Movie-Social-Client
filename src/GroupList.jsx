@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Posts from "./Posts.jsx";
 
 export default function GroupList({ userId, token }) {
   const [groups, setGroups] = useState([]);
+  const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     getGroups();
@@ -37,6 +39,8 @@ export default function GroupList({ userId, token }) {
   };
 
   const getPosts = (groupId) => {
+    //set posts to empty array
+    setPosts([]);
     //get posts from backend
     try {
       fetch("http://localhost:3000/groups/" + groupId + "/posts", {
@@ -50,27 +54,37 @@ export default function GroupList({ userId, token }) {
           return response.json();
         })
         .then((data) => {
-          console.log("Posts", data);
-          return data.posts;
+          return data.groupPosts;
+        })
+        .then((posts) => {
+          setPosts(posts);
         });
     } catch (err) {
       //catch error and log it
+
       console.log(err);
     }
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-center mb-2">Groups</h1>
-      <ul>
-        {groups.map((group) => {
-          return (
-            <li onClick={() => getPosts(group.id)} key={group.id}>
-              {group.name}
-            </li>
-          );
-        })}
-      </ul>
+    <div className="w-full">
+      <h1 className="text-2xl font-bold  mb-2 text-left">Groups</h1>
+      <div className="flex w-full justify-between">
+        <ul>
+          {groups.map((group) => {
+            return (
+              <li
+                className="p-2 hover:cursor-pointer hover:bg-gray-200"
+                onClick={() => getPosts(group.id)}
+                key={group.id}
+              >
+                {group.name}
+              </li>
+            );
+          })}
+        </ul>
+        {<Posts posts={posts} />}
+      </div>
     </div>
   );
 }
