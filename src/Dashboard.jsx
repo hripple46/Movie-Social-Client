@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import GroupList from "./GroupList";
 import { useNavigate } from "react-router-dom";
+import JoinGroup from "./JoinGroup";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -81,6 +82,7 @@ export default function Dashboard() {
           //will add posts here
         }
       </div>
+      <JoinGroup userId={userId} token={token} />
     </div>
   );
 }
