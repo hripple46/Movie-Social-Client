@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import GroupList from "./GroupList";
 import { useNavigate } from "react-router-dom";
 import JoinGroup from "./JoinGroup";
+import AdminRequests from "./AdminRequests";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [user, setUser] = useState({});
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
   const [username, setUsername] = useState("");
@@ -17,29 +19,28 @@ export default function Dashboard() {
     const cookie2 = getCookie("userId");
     setUserId(cookie2);
     setIsLoading(false); // After setting the token and userId, set isLoading to false
-  }, [navigate]);
 
-  const getUserName = (userId) => {
-    fetch("http://localhost:3000/users/" + userId, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer " + token,
-      },
-    })
-      .then((response) => {
-        return response.json();
+    // Get user name
+    const getUserName = (userId) => {
+      fetch("http://localhost:3000/users/" + userId, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
       })
-      .then((data) => {
-        console.log("User", data);
-        setUsername(data.username);
-      });
-  };
-  getUserName(userId);
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log("User", data);
+          setUser(data);
+          setUsername(data.username);
+        });
+    };
+    getUserName(userId);
+  }, [navigate, token, userId]);
 
-  if (isLoading) {
-    return null; // Or return a loading spinner here
-  }
   //if no token or userId, redirect to '/'
   if (!token || !userId) {
     navigate("/");
@@ -64,6 +65,10 @@ export default function Dashboard() {
     navigate("/");
   }
 
+  if (isLoading) {
+    return null; // Or return a loading spinner here
+  }
+
   return (
     <div>
       <div className="flex justify-between">
@@ -83,6 +88,7 @@ export default function Dashboard() {
         }
       </div>
       <JoinGroup userId={userId} token={token} />
+      <AdminRequests user={user} />
     </div>
   );
 }
