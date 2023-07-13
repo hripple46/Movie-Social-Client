@@ -11,6 +11,7 @@ export default function Dashboard() {
   const [userId, setUserId] = useState("");
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [joinGroup, setJoinGroup] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in
@@ -70,9 +71,10 @@ export default function Dashboard() {
   }
 
   return (
-    <div>
+    <div className="w-full h-full">
       <div className="flex justify-between">
         <h1>Hi, {username}</h1>
+        <button onClick={() => setJoinGroup(true)}>Join Group</button>
 
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -87,7 +89,12 @@ export default function Dashboard() {
           //will add posts here
         }
       </div>
-      <JoinGroup userId={userId} token={token} />
+      <JoinGroup
+        show={joinGroup}
+        onHide={() => setJoinGroup(false)}
+        userId={userId}
+        token={token}
+      />
       <AdminRequests user={user} />
     </div>
   );
