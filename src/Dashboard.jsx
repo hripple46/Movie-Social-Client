@@ -72,10 +72,10 @@ export default function Dashboard() {
 
   return (
     <div className="w-full h-full">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h1>Hi, {username}</h1>
         <button onClick={() => setJoinGroup(true)}>Join Group</button>
-
+        <AdminRequests user={user} />
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={logoutUser}
@@ -95,7 +95,6 @@ export default function Dashboard() {
         userId={userId}
         token={token}
       />
-      <AdminRequests user={user} />
     </div>
   );
 }
