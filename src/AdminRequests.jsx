@@ -1,21 +1,82 @@
 import { useState, useEffect, useRef } from "react";
 import AlertIcon from "./assets/AlertIcon";
+import ApproveIcon from "./assets/ApproveIcon";
+import DenyIcon from "./assets/DenyIcon";
 export default function AdminRequests({ user }) {
   const [pendingRequests, setPendingRequests] = useState(null);
   const [showPending, setShowPending] = useState(false);
+  const [pendingUserDetails, setPendingUserDetails] = useState(null);
+
+  const [token, setToken] = useState("");
+  const [userId, setUserId] = useState("");
   const ref = useRef(); // Create a ref
+
+  useEffect(() => {
+    const cookie = getCookie("token");
+    setToken(cookie);
+    const cookie2 = getCookie("userId");
+    setUserId(cookie2);
+  }, []);
+  //extract token from cookie
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
 
   useEffect(() => {
     if (!user) {
       return;
     } else {
-      setPendingRequests(user.admin);
+      console.log(user);
+      const promises = async () => {
+        Promise.all(
+          user.admin.map((group) => {
+            return fetch("http://localhost:3000/groups/" + group, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + token,
+              },
+            })
+              .then((res) => res.json())
+              .then((group) => {
+                console.log(group);
+                return group.pendingUsers;
+              });
+          })
+        ).then((data) => {
+          console.log(data);
+          setPendingRequests(data);
+        });
+      };
+      //fix this code to first use the user.admin field to fetch the groups and pull the pendingUsers
+      //setPendingRequests(user);
+      promises();
     }
-  }, [user]);
+  }, [user, token]);
+  //this function will pull details of the pending users
+  useEffect(() => {
+    if (showPending) {
+      fetch("http://localhost:3000/users/" + pendingRequests, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      })
+        .then((res) => res.json())
+        .then((user) => {
+          console.log(user); // log the received user data
+          return user;
+        });
+    }
+  }, [showPending, pendingRequests, token]);
 
   // Click outside to hide pending users
   useEffect(() => {
     function handleClickOutside(event) {
+      console.log("Div Pressed");
       if (ref.current && !ref.current.contains(event.target)) {
         setShowPending(false);
       }
@@ -31,22 +92,36 @@ export default function AdminRequests({ user }) {
 
   //this function will show the pending users
   const showPendingUsers = () => {
-    if (showPending) {
+    if (pendingUserDetails) {
       return (
         <div
           ref={ref}
-          className="absolute -bottom-8 bg-gray-200 p-4 rounded-md"
+          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 translate-y-1/2 bg-gray-200 p-4 rounded-md"
         >
-          {pendingRequests.map((user) => {
+          {pendingUserDetails.map((user) => {
             return (
-              <div key={user}>
-                <h1>{user}</h1>
+              <div
+                className="flex
+              "
+                key={user._id}
+              >
+                <h1>{user.username}</h1>
+                <ApproveIcon />
+                <DenyIcon />
               </div>
             );
           })}
         </div>
       );
     }
+  };
+
+  const numberPendingRequests = () => {
+    var total = 0;
+    pendingRequests.forEach((group) => {
+      total += group.length;
+    });
+    return total;
   };
 
   //display the number of pending requests
@@ -60,14 +135,14 @@ export default function AdminRequests({ user }) {
           <AlertIcon />
           {showPendingUsers()}
 
-          <p className="absolute top-0 right-2">{pendingRequests.length}</p>
+          <p className="absolute top-0 right-2">{numberPendingRequests()}</p>
         </div>
       );
     } else {
       return;
     }
   };
-
+  console.log(pendingRequests);
   return (
     <>
       {pendingRequests ? (
