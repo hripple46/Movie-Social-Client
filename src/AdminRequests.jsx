@@ -29,6 +29,8 @@ export default function AdminRequests({ user }) {
       return;
     } else {
       console.log(user);
+      //flatten the array of pending users
+
       const promises = async () => {
         Promise.all(
           user.admin.map((group) => {
@@ -42,7 +44,7 @@ export default function AdminRequests({ user }) {
               .then((res) => res.json())
               .then((group) => {
                 console.log(group);
-                return group.pendingUsers;
+                return { group: group, users: group.pendingUsers };
               });
           })
         ).then((data) => {
@@ -57,26 +59,43 @@ export default function AdminRequests({ user }) {
   }, [user, token]);
   //this function will pull details of the pending users
   useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        let totalUsersArray = [];
+
+        for (const group of pendingRequests) {
+          let users = [];
+          for (const user of group.users) {
+            await fetch("http://localhost:3000/users/" + user, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                authorization: "Bearer " + token,
+              },
+            })
+              .then((res) => res.json())
+              .then((data) => users.push(data));
+          }
+
+          totalUsersArray.push({ group: group.group, users: users });
+        }
+
+        setPendingUserDetails(totalUsersArray);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+        // Handle your error appropriately here, e.g. show an error message
+      }
+    };
+
     if (showPending) {
-      fetch("http://localhost:3000/users/" + pendingRequests, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + token,
-        },
-      })
-        .then((res) => res.json())
-        .then((user) => {
-          console.log(user); // log the received user data
-          return user;
-        });
+      fetchUserDetails();
     }
   }, [showPending, pendingRequests, token]);
 
   // Click outside to hide pending users
   useEffect(() => {
     function handleClickOutside(event) {
-      console.log("Div Pressed");
+      console.log("ref", event.target);
       if (ref.current && !ref.current.contains(event.target)) {
         setShowPending(false);
       }
@@ -93,33 +112,44 @@ export default function AdminRequests({ user }) {
   //this function will show the pending users
   const showPendingUsers = () => {
     if (pendingUserDetails) {
+      console.log(pendingUserDetails);
+
       return (
-        <div
-          ref={ref}
-          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 translate-y-1/2 bg-gray-200 p-4 rounded-md"
-        >
-          {pendingUserDetails.map((user) => {
-            return (
-              <div
-                className="flex
-              "
-                key={user._id}
-              >
-                <h1>{user.username}</h1>
-                <ApproveIcon />
-                <DenyIcon />
-              </div>
-            );
-          })}
-        </div>
+        showPending && (
+          <div ref={ref} className="absolute  bg-gray-200 rounded-md w-48">
+            {pendingUserDetails.map((group) => {
+              return (
+                <div className="w-full h-full" key={group.group._id}>
+                  <ul className="w-full h-full flex flex-col p-2 m-0">
+                    <p className="mb-2">{group.group.name}</p>
+                    {group.users.map((user) => {
+                      return (
+                        <li
+                          className=" w-full flex justify-between"
+                          key={user._id}
+                        >
+                          <p className="w-1/2">{user.username}</p>{" "}
+                          <div className="flex">
+                            <ApproveIcon />
+                            <DenyIcon />
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        )
       );
     }
   };
-
+  //this function will count the number of pending requests
   const numberPendingRequests = () => {
     var total = 0;
     pendingRequests.forEach((group) => {
-      total += group.length;
+      total += group.users.length;
     });
     return total;
   };
@@ -133,9 +163,9 @@ export default function AdminRequests({ user }) {
           className="relative bg-red-200 rounded-full p-1 hover:bg-gray-200"
         >
           <AlertIcon />
-          {showPendingUsers()}
 
           <p className="absolute top-0 right-2">{numberPendingRequests()}</p>
+          {showPendingUsers()}
         </div>
       );
     } else {
