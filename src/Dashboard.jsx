@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import GroupList from "./GroupList";
 import { useNavigate } from "react-router-dom";
 import JoinGroup from "./JoinGroup";
 import AdminRequests from "./AdminRequests";
+import DropdownIcon from "./assets/DropdownIcon";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -12,6 +13,25 @@ export default function Dashboard() {
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [joinGroup, setJoinGroup] = useState(false);
+  const [showProfileDetails, setShowProfileDetails] = useState(false);
+
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target) &&
+        event.target.id !== "logout-button"
+      ) {
+        setShowProfileDetails(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     // Check if user is logged in
@@ -63,6 +83,8 @@ export default function Dashboard() {
     const eraseCookie2 = (document.cookie =
       "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;");
     await eraseCookie2;
+    setShowProfileDetails(false); // add this line
+
     navigate("/");
   }
 
@@ -73,15 +95,28 @@ export default function Dashboard() {
   return (
     <div className="w-full h-full">
       <div className="flex justify-between items-center">
-        <h1>Hi, {username}</h1>
         <button onClick={() => setJoinGroup(true)}>Join Group</button>
         <AdminRequests user={user} />
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={logoutUser}
-        >
-          Logout
-        </button>
+        <div className="relative">
+          <div
+            className="flex items-center cursor-pointer"
+            onClick={() => setShowProfileDetails(true)}
+            ref={profileRef}
+          >
+            <h1>Hi, {username}</h1>
+            <DropdownIcon />
+          </div>
+
+          <button
+            id="logout-button"
+            className={`logout-button transition-all duration-500 absolute right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded overflow-hidden ${
+              showProfileDetails ? "visible max-h-20" : "invisible max-h-4"
+            }`}
+            onClick={logoutUser}
+          >
+            Logout
+          </button>
+        </div>
       </div>
       <div className="flex">
         <GroupList userId={userId} token={token} />

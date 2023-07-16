@@ -97,7 +97,9 @@ export default function AdminRequests({ user }) {
     function handleClickOutside(event) {
       console.log("ref", event.target);
       if (ref.current && !ref.current.contains(event.target)) {
-        setShowPending(false);
+        if (!event.target.matches(".logout-button")) {
+          setShowPending(false);
+        }
       }
     }
 
