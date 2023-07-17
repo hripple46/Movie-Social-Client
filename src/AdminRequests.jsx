@@ -111,6 +111,44 @@ export default function AdminRequests({ user }) {
     };
   }, [ref]);
 
+  //function to approve user request and add to group
+  const addUserToGroup = (userId, groupId) => {
+    console.log("add user" + userId + " to group" + groupId);
+    fetch(
+      "http://localhost:3000/groups/" + groupId + "/activeusers/" + userId,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  //this function will deny the user request
+  const denyUserToGroup = (userId, groupId) => {
+    console.log("deny user" + userId + " to group" + groupId);
+    fetch(
+      "http://localhost:3000/groups/" + groupId + "/pendingusers/" + userId,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   //this function will show the pending users
   const showPendingUsers = () => {
     if (pendingUserDetails) {
@@ -132,8 +170,21 @@ export default function AdminRequests({ user }) {
                         >
                           <p className="w-1/2">{user.username}</p>{" "}
                           <div className="flex">
-                            <ApproveIcon />
-                            <DenyIcon />
+                            <div
+                              onClick={() =>
+                                //call function with user id and group id
+                                addUserToGroup(user._id, group.group._id)
+                              }
+                            >
+                              <ApproveIcon />
+                            </div>
+                            <div
+                              onClick={() =>
+                                denyUserToGroup(user._id, group.group._id)
+                              }
+                            >
+                              <DenyIcon />
+                            </div>
                           </div>
                         </li>
                       );
