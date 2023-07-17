@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import AlertIcon from "./assets/AlertIcon";
+import NotificationIcon from "./assets/NotificationIcon";
 import ApproveIcon from "./assets/ApproveIcon";
 import DenyIcon from "./assets/DenyIcon";
 export default function AdminRequests({ user }) {
@@ -156,7 +157,10 @@ export default function AdminRequests({ user }) {
 
       return (
         showPending && (
-          <div ref={ref} className="absolute  bg-gray-200 rounded-md w-48">
+          <div
+            ref={ref}
+            className="absolute right-0  bg-gray-200 rounded-md w-48"
+          >
             {pendingUserDetails.map((group) => {
               return (
                 <div className="w-full h-full" key={group.group._id}>
@@ -213,11 +217,13 @@ export default function AdminRequests({ user }) {
       return (
         <div
           onClick={() => setShowPending(true)}
-          className="relative bg-red-200 rounded-full p-1 hover:bg-gray-200"
+          className="relative  rounded-full p-1 hover:bg-gray-200 mr-2"
         >
-          <AlertIcon />
+          <NotificationIcon />
 
-          <p className="absolute top-0 right-2">{numberPendingRequests()}</p>
+          <p className="absolute top-0 text-xs right-0">
+            {numberPendingRequests()}
+          </p>
           {showPendingUsers()}
         </div>
       );

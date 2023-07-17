@@ -96,26 +96,28 @@ export default function Dashboard() {
     <div className="w-full h-full">
       <div className="flex justify-between items-center">
         <button onClick={() => setJoinGroup(true)}>Join Group</button>
-        <AdminRequests user={user} />
-        <div className="relative">
-          <div
-            className="flex items-center cursor-pointer"
-            onClick={() => setShowProfileDetails(true)}
-            ref={profileRef}
-          >
-            <h1>Hi, {username}</h1>
-            <DropdownIcon />
-          </div>
+        <div className="flex">
+          <AdminRequests user={user} />
+          <div className="relative">
+            <div
+              className="h-full flex items-center cursor-pointer"
+              onClick={() => setShowProfileDetails(true)}
+              ref={profileRef}
+            >
+              <h1>Hi, {username}</h1>
+              <DropdownIcon />
+            </div>
 
-          <button
-            id="logout-button"
-            className={`logout-button transition-all duration-500 absolute right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded overflow-hidden ${
-              showProfileDetails ? "visible max-h-20" : "invisible max-h-4"
-            }`}
-            onClick={logoutUser}
-          >
-            Logout
-          </button>
+            <button
+              id="logout-button"
+              className={`logout-button transition-all duration-500 absolute right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded overflow-hidden ${
+                showProfileDetails ? "visible max-h-20" : "invisible max-h-4"
+              }`}
+              onClick={logoutUser}
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </div>
       <div className="flex">
