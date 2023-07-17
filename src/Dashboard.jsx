@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import JoinGroup from "./JoinGroup";
 import AdminRequests from "./AdminRequests";
 import DropdownIcon from "./assets/DropdownIcon";
+import NewPost from "./NewPost";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  //user state includes user document from database
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
@@ -33,6 +35,7 @@ export default function Dashboard() {
     };
   }, []);
 
+  //use hook to pull user information from cookie
   useEffect(() => {
     // Check if user is logged in
     const cookie = getCookie("token");
@@ -93,7 +96,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full relative">
       <div className="flex justify-between items-center">
         <button onClick={() => setJoinGroup(true)}>Join Group</button>
         <div className="flex">
@@ -132,6 +135,7 @@ export default function Dashboard() {
         userId={userId}
         token={token}
       />
+      <NewPost user={user} />
     </div>
   );
 }
