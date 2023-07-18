@@ -34,7 +34,7 @@ export default function JoinGroup({ userId, token, show, onHide }) {
     <div
       className={`${
         show
-          ? `absolute w-full h-full top-0 backdrop-blur-lg justify-center flex`
+          ? `fixed z-50 w-full h-full top-0 backdrop-blur-lg justify-center flex`
           : `none`
       }`}
     >

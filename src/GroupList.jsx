@@ -71,8 +71,8 @@ export default function GroupList({ userId, token }) {
     <div className="w-full h-full">
       <h1 className="text-2xl font-bold  mb-2 text-left">Groups</h1>
       <div className="flex w-full h-full relative ">
-        <div className="bg-gray-200 basis-1/3 relative">
-          <ul className="sticky top-0 w-full">
+        <div className="bg-gray-200 basis-1/3 relative overflow-y-scroll">
+          <ul className="w-full overflow-y-scroll">
             {groups.map((group) => {
               return (
                 <li
@@ -86,7 +86,7 @@ export default function GroupList({ userId, token }) {
             })}
           </ul>
         </div>
-        <div className="basis-2/3">
+        <div className="basis-2/3 h-full overflow-y-auto">
           {<Posts posts={posts} />}
           <div className="fixed bottom-2 ml-2 w-1/2">
             <NewPost />
