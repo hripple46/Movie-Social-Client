@@ -6,6 +6,7 @@ import NewPost from "./NewPost.jsx";
 export default function GroupList({ userId, token }) {
   const [groups, setGroups] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [activeGroup, setActiveGroup] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     getGroups();
@@ -39,9 +40,11 @@ export default function GroupList({ userId, token }) {
     }
   };
 
-  const getPosts = (groupId) => {
+  const getPosts = (groupId, group) => {
     //set posts to empty array
     setPosts([]);
+    //set active group
+    setActiveGroup(group);
     //get posts from backend
     try {
       fetch("http://localhost:3000/groups/" + groupId + "/posts", {
@@ -77,7 +80,7 @@ export default function GroupList({ userId, token }) {
               return (
                 <li
                   className="p-2 hover:cursor-pointer hover:bg-gray-400"
-                  onClick={() => getPosts(group.id)}
+                  onClick={() => getPosts(group.id, group)}
                   key={group.id}
                 >
                   {group.name}
@@ -89,7 +92,7 @@ export default function GroupList({ userId, token }) {
         <div className="basis-2/3 h-full overflow-y-auto">
           {<Posts posts={posts} />}
           <div className="fixed bottom-2 ml-2 w-1/2">
-            <NewPost />
+            <NewPost group={activeGroup} />
           </div>
         </div>
       </div>
