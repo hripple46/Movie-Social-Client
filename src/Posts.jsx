@@ -13,8 +13,8 @@ export default function Posts({ posts }) {
     );
   });
   return (
-    <div>
-      <ul className="pr-8">{displayPosts}</ul>
+    <div className="pl-2 pr-2">
+      <ul>{displayPosts}</ul>
     </div>
   );
 }

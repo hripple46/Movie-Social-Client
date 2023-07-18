@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function NewPost({ user }) {
   return (
-    <div className="w-3/4 h-8 bg-gray-200 right-4 absolute bottom-8">
+    <div className="w-full h-10">
       <form className="w-full h-full">
         <input
           className="w-full h-full border-gray-400 border-2 rounded-md"

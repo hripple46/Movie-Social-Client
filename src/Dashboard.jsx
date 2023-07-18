@@ -97,7 +97,7 @@ export default function Dashboard() {
 
   return (
     <div className="w-full h-full relative">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center fixed w-full z-20 bg-white">
         <button onClick={() => setJoinGroup(true)}>Join Group</button>
         <div className="flex">
           <AdminRequests user={user} />
@@ -123,7 +123,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex w-full h-full pt-[40px]">
         <GroupList userId={userId} token={token} />
         {
           //will add posts here
@@ -135,7 +135,6 @@ export default function Dashboard() {
         userId={userId}
         token={token}
       />
-      <NewPost user={user} />
     </div>
   );
 }

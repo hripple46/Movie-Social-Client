@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Posts from "./Posts.jsx";
+import NewPost from "./NewPost.jsx";
 
 export default function GroupList({ userId, token }) {
   const [groups, setGroups] = useState([]);
@@ -67,23 +68,30 @@ export default function GroupList({ userId, token }) {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
       <h1 className="text-2xl font-bold  mb-2 text-left">Groups</h1>
-      <div className="flex w-full justify-between">
-        <ul>
-          {groups.map((group) => {
-            return (
-              <li
-                className="p-2 hover:cursor-pointer hover:bg-gray-200"
-                onClick={() => getPosts(group.id)}
-                key={group.id}
-              >
-                {group.name}
-              </li>
-            );
-          })}
-        </ul>
-        {<Posts posts={posts} />}
+      <div className="flex w-full h-full relative ">
+        <div className="bg-gray-200 basis-1/3 relative">
+          <ul className="sticky top-0 w-full">
+            {groups.map((group) => {
+              return (
+                <li
+                  className="p-2 hover:cursor-pointer hover:bg-gray-400"
+                  onClick={() => getPosts(group.id)}
+                  key={group.id}
+                >
+                  {group.name}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="basis-2/3">
+          {<Posts posts={posts} />}
+          <div className="fixed bottom-2 ml-2 w-1/2">
+            <NewPost />
+          </div>
+        </div>
       </div>
     </div>
   );
