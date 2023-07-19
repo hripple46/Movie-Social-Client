@@ -90,7 +90,7 @@ export default function GroupList({ userId, token, user }) {
           </ul>
         </div>
         <div className="basis-2/3 h-full overflow-y-auto">
-          {<Posts posts={posts} />}
+          {<Posts posts={posts} currentUser={user} />}
           <div className="fixed bottom-2 ml-2 w-1/2">
             <NewPost group={activeGroup} user={user} token={token} />
           </div>
