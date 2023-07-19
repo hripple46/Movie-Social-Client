@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
+import ThumbDownIcon from "./assets/ThumbDownIcon";
+import ThumbUpIcon from "./assets/ThumbUpIcon";
 
 export default function NewPost({ group, user, token }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [movie, setMovie] = useState("");
   const [userRecommend, setUserRecommend] = useState(null);
+  const [selected, setSelected] = useState(null);
+
+  console.log(userRecommend);
+
   const submitPost = (e) => {
     e.preventDefault();
     console.log("Group", group);
@@ -90,25 +96,47 @@ export default function NewPost({ group, user, token }) {
             </ul>
           )}
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="recommends">Like</label>
-          <input
-            onClick={(e) => setUserRecommend(e.target.value)}
-            type="radio"
-            name="recommend"
-            value="true"
-            id="recommends"
-          />
+        <div className="flex">
+          <label
+            className="hover:cursor-pointer flex items-center"
+            htmlFor="recommends"
+          >
+            <input
+              className="hidden"
+              onClick={(e) => {
+                setSelected("recommends");
+                setUserRecommend(e.target.value);
+              }}
+              type="radio"
+              name="recommend"
+              value="true"
+              id="recommends"
+            />
+            <ThumbUpIcon
+              color={selected === "recommends" ? "green" : "default"}
+            />
+          </label>
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="doesNotRecommend">Dislike</label>
-          <input
-            onClick={(e) => setUserRecommend(e.target.value)}
-            type="radio"
-            name="recommend"
-            value="false"
-            id="doesNotRecommend"
-          />
+        <div className="flex ">
+          <label
+            className="hover:cursor-pointer flex items-center"
+            htmlFor="doesNotRecommend"
+          >
+            <input
+              className="hidden"
+              onClick={(e) => {
+                setSelected("doesNotRecommend");
+                setUserRecommend(e.target.value);
+              }}
+              type="radio"
+              name="recommend"
+              value="false"
+              id="doesNotRecommend"
+            />
+            <ThumbDownIcon
+              color={selected === "doesNotRecommend" ? "red" : "default"}
+            />
+          </label>
         </div>
         <button className="w-1/4 bg-green-200 rounded-md" type="submit">
           Post
