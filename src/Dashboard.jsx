@@ -124,7 +124,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="flex w-full h-full mt-[40px]">
-        <GroupList userId={userId} token={token} />
+        <GroupList userId={userId} user={user} token={token} />
         {
           //will add posts here
         }

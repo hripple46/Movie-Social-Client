@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 
-export default function NewPost({ group }) {
-  const [newPost, setNewPost] = useState("");
+export default function NewPost({ group, user, token }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  const [movie, setMovie] = useState("");
+  const [userRecommend, setUserRecommend] = useState(null);
   const submitPost = (e) => {
     e.preventDefault();
+    console.log("Group", group);
     fetch("http://localhost:3000/groups/" + group.id + "/posts", {
       method: "POST",
       headers: {
@@ -13,9 +15,10 @@ export default function NewPost({ group }) {
         authorization: "Bearer " + token,
       },
       body: JSON.stringify({
-        post: {
-          text: newPost,
-        },
+        movie: movie,
+        user: user,
+        group: group,
+        recommends: userRecommend,
       }),
     })
       .then((response) => {
@@ -23,6 +26,8 @@ export default function NewPost({ group }) {
       })
       .then((data) => {
         console.log("New Post", data);
+        //refresh posts
+        location.reload();
       });
 
     console.log("User submitted post to" + group.name);
@@ -50,7 +55,11 @@ export default function NewPost({ group }) {
   const getResults = () => {
     return results.map((result) => {
       return (
-        <li className="truncate" key={result.id}>
+        <li
+          onClick={() => setMovie(result.title)}
+          className="truncate"
+          key={result.id}
+        >
           {result.title}
         </li>
       );
@@ -59,13 +68,21 @@ export default function NewPost({ group }) {
 
   return (
     <div className="w-full h-10">
-      <form className="flex w-full h-full" onSubmit={(e) => submitPost(e)}>
+      <form
+        className="flex justify-between w-full h-full"
+        onSubmit={(e) => submitPost(e)}
+      >
         <div className="w-1/3 h-full relative">
           <input
             className="w-full h-full border-gray-400 border-2 rounded-md"
             type="text"
             placeholder="Avatar"
-            onChange={(e) => setSearch(e.target.value)}
+            value={movie}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setMovie(e.target.value);
+              setResults([]);
+            }}
           />
           {search && results.length > 0 && (
             <ul className="absolute bottom-full left-0 w-60 bg-gray-200 p-1 rounded-md">
@@ -73,14 +90,27 @@ export default function NewPost({ group }) {
             </ul>
           )}
         </div>
-        <input
-          onChange={(e) => setNewPost(e.target.value)}
-          className="w-1/3 h-full border-gray-400 border-2 rounded-md"
-          name="newPost"
-          type="text"
-          placeholder="Charlie recommends The Matrix"
-        />
-        <button className="w-1/4" type="submit">
+        <div className="flex flex-col">
+          <label htmlFor="recommends">Like</label>
+          <input
+            onClick={(e) => setUserRecommend(e.target.value)}
+            type="radio"
+            name="recommend"
+            value="true"
+            id="recommends"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="doesNotRecommend">Dislike</label>
+          <input
+            onClick={(e) => setUserRecommend(e.target.value)}
+            type="radio"
+            name="recommend"
+            value="false"
+            id="doesNotRecommend"
+          />
+        </div>
+        <button className="w-1/4 bg-green-200 rounded-md" type="submit">
           Post
         </button>
       </form>

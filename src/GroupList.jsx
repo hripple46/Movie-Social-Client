@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Posts from "./Posts.jsx";
 import NewPost from "./NewPost.jsx";
 
-export default function GroupList({ userId, token }) {
+export default function GroupList({ userId, token, user }) {
   const [groups, setGroups] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [activeGroup, setActiveGroup] = useState("");
+  const [activeGroup, setActiveGroup] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     getGroups();
@@ -92,7 +92,7 @@ export default function GroupList({ userId, token }) {
         <div className="basis-2/3 h-full overflow-y-auto">
           {<Posts posts={posts} />}
           <div className="fixed bottom-2 ml-2 w-1/2">
-            <NewPost group={activeGroup} />
+            <NewPost group={activeGroup} user={user} token={token} />
           </div>
         </div>
       </div>
