@@ -7,8 +7,10 @@ export default function Posts({ posts, currentUser }) {
       <li
         className={`p-4  rounded-lg shadow-lg mb-4 w-fit ${
           post.user && currentUser._id === post.user._id
-            ? "bg-green-200 ml-auto"
-            : "bg-blue-200 mr-auto"
+            ? "bg-blue-200 ml-auto"
+            : post.post.recommends
+            ? "bg-green-200 mr-auto"
+            : "bg-red-200 mr-auto"
         }`}
         key={post.id}
       >
@@ -22,8 +24,8 @@ export default function Posts({ posts, currentUser }) {
   });
 
   return (
-    <div className="pl-2 pr-2 ">
-      <ul className="flex flex-col">{displayPosts}</ul>
+    <div className="pl-2 pr-2 overflow-y-scroll ">
+      <ul className="flex flex-col overflow-y-auto">{displayPosts}</ul>
     </div>
   );
 }

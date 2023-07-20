@@ -159,7 +159,7 @@ export default function AdminRequests({ user }) {
         showPending && (
           <div
             ref={ref}
-            className="absolute right-0  bg-gray-200 rounded-md w-48"
+            className="absolute right-0  bg-gray-700 rounded-md w-48"
           >
             {pendingUserDetails.map((group) => {
               return (
