@@ -5,6 +5,7 @@ import JoinGroup from "./JoinGroup";
 import AdminRequests from "./AdminRequests";
 import DropdownIcon from "./assets/DropdownIcon";
 import NewPost from "./NewPost";
+import NewGroup from "./NewGroup";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -96,9 +97,10 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full h-full relative bg-black">
-      <div className="flex justify-between items-center fixed top-0 w-full z-20 bg-black text-white">
+    <div className="w-full h-full relative bg-blue-950">
+      <div className="flex justify-between items-center fixed top-0 w-full z-20 bg-blue-950 text-white">
         <button onClick={() => setJoinGroup(true)}>Join Group</button>
+        <NewGroup user={user} token={token} />
         <div className="flex">
           <AdminRequests user={user} />
           <div className="relative">
