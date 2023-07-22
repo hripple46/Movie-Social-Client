@@ -28,7 +28,8 @@ export default function NewGroup({ user, token, show, onHide }) {
   };
 
   return (
-    <div>
+    //temporarily hiding
+    <div className="hidden">
       <h1>New Group</h1>
       <form onSubmit={(e) => submitNewGroup(e)}>
         <label htmlFor="groupName">Group Name:</label>
