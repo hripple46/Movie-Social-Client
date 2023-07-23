@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-export default function NewGroup({ user, token, show, onHide }) {
+export default function NewGroup({ user, token }) {
+  const [showForm, setShowForm] = useState(false);
+  console.log("User", user);
   const submitNewGroup = (e) => {
     e.preventDefault();
-    onHide();
+    setShowForm(false);
     //send fetch request to join group
     fetch("http://localhost:3000/groups", {
       method: "POST",
@@ -13,7 +15,7 @@ export default function NewGroup({ user, token, show, onHide }) {
       },
       body: JSON.stringify({
         name: e.target.groupName.value,
-        user: user,
+        admin: user,
       }),
     })
       .then((response) => {
@@ -28,14 +30,33 @@ export default function NewGroup({ user, token, show, onHide }) {
   };
 
   return (
-    //temporarily hiding
-    <div className="hidden">
-      <h1>New Group</h1>
-      <form onSubmit={(e) => submitNewGroup(e)}>
-        <label htmlFor="groupName">Group Name:</label>
-        <input type="text" name="groupName" id="groupName" />
-        <input type="submit" value="Create Group" />
-      </form>
+    <div className="relative">
+      <h1 className="hover:cursor-pointer" onClick={() => setShowForm(true)}>
+        New Group
+      </h1>
+      <div
+        className={`${
+          showForm ? `block` : `hidden`
+        } absolute z-50 text-black p-2 w-[250px] top-full left-1/3 bg-gray-200 rounded-md justify-center flex flex-col ${
+          showForm ? `block` : `hidden`
+        }`}
+      >
+        <form onSubmit={(e) => submitNewGroup(e)}>
+          <label htmlFor="groupName">Group Name:</label>
+          <input type="text" name="groupName" id="groupName" />
+          <input
+            className="w-full bg-green-200 rounded-md mt-4 hover:cursor-pointer p-2"
+            type="submit"
+            value="Create Group"
+          />
+        </form>
+        <p
+          onClick={() => setShowForm(false)}
+          className="hover:cursor-pointer mr-1 absolute top-0 right-0"
+        >
+          Close
+        </p>
+      </div>
     </div>
   );
 }
