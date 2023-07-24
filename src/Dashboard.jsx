@@ -47,7 +47,7 @@ export default function Dashboard() {
 
     // Get user name
     const getUserName = (userId) => {
-      fetch("http://localhost:3000/users/" + userId, {
+      fetch("https://billowing-dawn-923.fly.dev/users/" + userId, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

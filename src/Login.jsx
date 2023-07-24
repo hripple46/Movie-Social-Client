@@ -13,7 +13,7 @@ export default function Login() {
   const loginUser = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/users/login", {
+    fetch("https://billowing-dawn-923.fly.dev/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

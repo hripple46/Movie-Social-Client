@@ -7,7 +7,7 @@ export default function NewGroup({ user, token }) {
     e.preventDefault();
     setShowForm(false);
     //send fetch request to join group
-    fetch("http://localhost:3000/groups", {
+    fetch("https://billowing-dawn-923.fly.dev/groups", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

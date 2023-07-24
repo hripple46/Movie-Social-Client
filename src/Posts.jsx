@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MovieDetails from "./MovieDetails";
+require("dotenv").config();
 
 export default function Posts({ posts, currentUser }) {
   const [movie, setMovie] = useState(null);

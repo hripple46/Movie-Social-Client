@@ -15,7 +15,7 @@ export default function GroupList({ userId, token, user }) {
   const getGroups = () => {
     //get groups from backend
     try {
-      fetch("http://localhost:3000/users/" + userId + "/groups", {
+      fetch("https://billowing-dawn-923.fly.dev/users/" + userId + "/groups", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function GroupList({ userId, token, user }) {
     setActiveGroup(group);
     //get posts from backend
     try {
-      fetch("http://localhost:3000/groups/" + groupId + "/posts", {
+      fetch("https://billowing-dawn-923.fly.dev/groups/" + groupId + "/posts", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

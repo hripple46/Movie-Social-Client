@@ -14,7 +14,7 @@ export default function NewPost({ group, user, token }) {
   const submitPost = (e) => {
     e.preventDefault();
     console.log("Group", group);
-    fetch("http://localhost:3000/groups/" + group.id + "/posts", {
+    fetch("https://billowing-dawn-923.fly.dev/groups/" + group.id + "/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
