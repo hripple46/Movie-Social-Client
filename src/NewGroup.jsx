@@ -37,7 +37,7 @@ export default function NewGroup({ user, token }) {
       <div
         className={`${
           showForm ? `block` : `hidden`
-        } absolute z-50 text-black p-2 w-[250px] top-full left-1/3 bg-gray-200 rounded-md justify-center flex flex-col ${
+        } absolute z-50 text-black shadow-lg p-2 w-[250px] top-full left-0 bg-gray-300 rounded-md justify-center flex flex-col ${
           showForm ? `block` : `hidden`
         }`}
       >

@@ -79,7 +79,7 @@ export default function GroupList({ userId, token, user }) {
             {groups.map((group) => {
               return (
                 <li
-                  className="p-2 hover:cursor-pointer hover:bg-gray-700 rounded-lg"
+                  className="p-2 hover:cursor-pointer hover:bg-gray-300 rounded-lg"
                   onClick={() => getPosts(group.id, group)}
                   key={group.id}
                 >

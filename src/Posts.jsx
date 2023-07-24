@@ -26,7 +26,7 @@ export default function Posts({ posts, currentUser }) {
 
     return (
       <li
-        className={`p-4  rounded-lg shadow-lg mb-4 w-fit ${
+        className={`p-4  rounded-lg bg-white shadow-lg mb-4 w-fit ${
           post.user && currentUser._id === post.user._id
             ? "border-2 border-gray-300 ml-auto"
             : post.post.recommends

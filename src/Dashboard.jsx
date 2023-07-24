@@ -116,7 +116,7 @@ export default function Dashboard() {
 
             <button
               id="logout-button"
-              className={`logout-button transition-all duration-500 absolute right-0 bg-gray-200 hover:bg-gray-200-700 text-black font-bold py-2 px-4 rounded overflow-hidden ${
+              className={`logout-button transition-all duration-500 absolute right-0 bg-gray-300 hover:bg-gray-500 text-black font-bold py-2 px-4 rounded overflow-hidden ${
                 showProfileDetails ? "visible max-h-20" : "invisible max-h-4"
               }`}
               onClick={logoutUser}
