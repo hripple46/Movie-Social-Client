@@ -39,13 +39,13 @@ export default function Login() {
         document.cookie = "token=" + data.token;
         document.cookie = "userId=" + data.userId;
         setUserId(data.userId);
-        navigate("/dashboard");
+        navigate("/");
         return data;
       })
 
       .then(() => {
         console.log(userId);
-        navigate("/dashboard");
+        navigate("/");
       })
       //catch error and log it
       //navigate to '/' if error
