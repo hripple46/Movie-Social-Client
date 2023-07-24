@@ -89,7 +89,7 @@ export default function Dashboard() {
     await eraseCookie2;
     setShowProfileDetails(false); // add this line
 
-    navigate("/");
+    location.reload();
   }
 
   if (isLoading) {

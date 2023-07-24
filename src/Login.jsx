@@ -39,7 +39,7 @@ export default function Login() {
         document.cookie = "token=" + data.token;
         document.cookie = "userId=" + data.userId;
         setUserId(data.userId);
-        navigate("/");
+        location.reload();
         return data;
       })
 
@@ -53,7 +53,7 @@ export default function Login() {
         console.log(err);
         setLoginError(err.message);
 
-        navigate("/");
+        location.reload();
       });
   };
 
