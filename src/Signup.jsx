@@ -35,7 +35,7 @@ export default function Signup() {
   };
 
   return (
-    <div>
+    <div className="absolute flex items-center justify-center w-full h-full">
       <form className="w-1/3 justify-center flex flex-col">
         <label className="w-full" htmlFor="username">
           Username:
