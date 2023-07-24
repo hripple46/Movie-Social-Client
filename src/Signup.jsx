@@ -30,7 +30,7 @@ export default function Signup() {
         return response.json();
       })
       .then(() => {
-        redirect("/");
+        navigate("/");
       });
   };
 
