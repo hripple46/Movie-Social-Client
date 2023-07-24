@@ -74,7 +74,7 @@ export default function GroupList({ userId, token, user }) {
     <div className="w-full h-full bg-blue-950">
       <h1 className="text-2xl font-bold  mb-2 text-left">Groups</h1>
       <div className="flex w-full h-full relative bg-blue-950">
-        <div className="bg-blue-950 text-white basis-1/3 relative  p-2">
+        <div className="bg-blue-950 text-white basis-1/3 relative border-r-2 mr-2 border-gray-300  p-2">
           <ul className="w-full pr-0">
             {groups.map((group) => {
               return (

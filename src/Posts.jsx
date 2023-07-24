@@ -28,10 +28,10 @@ export default function Posts({ posts, currentUser }) {
       <li
         className={`p-4  rounded-lg shadow-lg mb-4 w-fit ${
           post.user && currentUser._id === post.user._id
-            ? "bg-blue-300 ml-auto"
+            ? "border-2 border-gray-300 ml-auto"
             : post.post.recommends
-            ? "bg-lime-400 mr-auto"
-            : "bg-red-400 mr-auto"
+            ? "border-2 border-lime-400  mr-auto"
+            : "border-2 border-red-400  mr-auto"
         }`}
         key={post.id}
       >
