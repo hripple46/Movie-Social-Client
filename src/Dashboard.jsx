@@ -97,8 +97,8 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full h-full relative bg-blue-950">
-      <div className="flex justify-between items-center fixed top-0 w-full z-20 bg-blue-950 text-white">
+    <div className="w-full h-full relative bg-gray-200">
+      <div className="flex justify-between items-center fixed top-0 w-full z-20 bg-gray-200 text-black">
         <button onClick={() => setJoinGroup(true)}>Join Group</button>
 
         <NewGroup user={user} token={token} />
@@ -116,7 +116,7 @@ export default function Dashboard() {
 
             <button
               id="logout-button"
-              className={`logout-button transition-all duration-500 absolute right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded overflow-hidden ${
+              className={`logout-button transition-all duration-500 absolute right-0 bg-gray-200 hover:bg-gray-200-700 text-black font-bold py-2 px-4 rounded overflow-hidden ${
                 showProfileDetails ? "visible max-h-20" : "invisible max-h-4"
               }`}
               onClick={logoutUser}
@@ -126,7 +126,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="flex w-full pb-16 bg-blue-950 h-[calc(100vh-40px)]">
+      <div className="flex w-full pb-16 bg-gray-200 h-[calc(100vh-40px)]">
         <GroupList userId={userId} user={user} token={token} />
         {
           //will add posts here

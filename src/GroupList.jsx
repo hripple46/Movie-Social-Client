@@ -71,10 +71,10 @@ export default function GroupList({ userId, token, user }) {
   };
 
   return (
-    <div className="w-full h-full bg-blue-950">
+    <div className="w-full h-full bg-gray-200">
       <h1 className="text-2xl font-bold  mb-2 text-left">Groups</h1>
-      <div className="flex w-full h-full relative bg-blue-950">
-        <div className="bg-blue-950 text-white basis-1/3 relative border-r-2 mr-2 border-gray-300  p-2">
+      <div className="flex w-full h-full relative bg-gray-200">
+        <div className="bg-gray-200 text-black basis-1/3 relative border-r-2 mr-2 border-gray-300  p-2">
           <ul className="w-full pr-0">
             {groups.map((group) => {
               return (
@@ -89,7 +89,7 @@ export default function GroupList({ userId, token, user }) {
             })}
           </ul>
         </div>
-        <div className="basis-2/3 bg-blue-950 h-full overflow-y-scroll">
+        <div className="basis-2/3 bg-gray-200 h-full overflow-y-scroll">
           {<Posts posts={posts} currentUser={user} />}
           <div className="fixed bottom-2 ml-2 w-1/2">
             <NewPost group={activeGroup} user={user} token={token} />

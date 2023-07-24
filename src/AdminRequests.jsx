@@ -159,7 +159,7 @@ export default function AdminRequests({ user }) {
         showPending && (
           <div
             ref={ref}
-            className="absolute right-0  bg-gray-700 rounded-md w-48"
+            className="absolute right-0  bg-gray-200 border-2 border-black rounded-md w-48"
           >
             {pendingUserDetails.map((group) => {
               return (
@@ -217,7 +217,7 @@ export default function AdminRequests({ user }) {
       return (
         <div
           onClick={() => setShowPending(true)}
-          className="relative  rounded-full p-1 hover:bg-gray-200 mr-2"
+          className="relative  rounded-full p-1 hover:bg-gray-300 hover:cursor-pointer mr-2"
         >
           <NotificationIcon />
 

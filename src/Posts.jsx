@@ -30,17 +30,17 @@ export default function Posts({ posts, currentUser }) {
           post.user && currentUser._id === post.user._id
             ? "border-2 border-gray-300 ml-auto"
             : post.post.recommends
-            ? "border-2 border-lime-400  mr-auto"
-            : "border-2 border-red-400  mr-auto"
+            ? "border-2 border-lime-600  mr-auto"
+            : "border-2 border-red-600  mr-auto"
         }`}
         key={post.id}
       >
-        <h3 className="text-white">
+        <h3 className="text-black">
           {post.user ? post.user.username : "Anonymous"}
           {post.post.recommends ? " recommends " : " does not recommend "}
           <h3
             onClick={() => movieOnClick(post.post.movie)}
-            className="inline text-amber-200 hover:cursor-pointer hover:text-amber-400"
+            className="inline text-amber-600 hover:cursor-pointer hover:text-amber-700"
           >
             {post.post.movie}
           </h3>
@@ -67,7 +67,7 @@ export default function Posts({ posts, currentUser }) {
 
           <div
             onClick={() => setShowMovie(false)}
-            className="text-white absolute top-1/4 right-12 hover:cursor-pointer hover:text-red-500"
+            className="text-black absolute top-1/4 right-12 hover:cursor-pointer hover:text-red-500"
           >
             Close
           </div>

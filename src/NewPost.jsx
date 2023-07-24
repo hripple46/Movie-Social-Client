@@ -113,7 +113,7 @@ export default function NewPost({ group, user, token }) {
               id="recommends"
             />
             <ThumbUpIcon
-              color={selected === "recommends" ? "green" : "white"}
+              color={selected === "recommends" ? "green" : "black"}
             />
           </label>
         </div>
@@ -134,7 +134,7 @@ export default function NewPost({ group, user, token }) {
               id="doesNotRecommend"
             />
             <ThumbDownIcon
-              color={selected === "doesNotRecommend" ? "red" : "white"}
+              color={selected === "doesNotRecommend" ? "red" : "black"}
             />
           </label>
         </div>
