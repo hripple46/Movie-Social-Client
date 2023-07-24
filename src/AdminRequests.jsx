@@ -35,7 +35,7 @@ export default function AdminRequests({ user }) {
       const promises = async () => {
         Promise.all(
           user.admin.map((group) => {
-            return fetch("http://localhost:3000/groups/" + group, {
+            return fetch("https://billowing-dawn-923.fly.dev/groups/" + group, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export default function AdminRequests({ user }) {
         for (const group of pendingRequests) {
           let users = [];
           for (const user of group.users) {
-            await fetch("http://localhost:3000/users/" + user, {
+            await fetch("https://billowing-dawn-923.fly.dev/users/" + user, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -116,7 +116,10 @@ export default function AdminRequests({ user }) {
   const addUserToGroup = (userId, groupId) => {
     console.log("add user" + userId + " to group" + groupId);
     fetch(
-      "http://localhost:3000/groups/" + groupId + "/activeusers/" + userId,
+      "https://billowing-dawn-923.fly.dev/groups/" +
+        groupId +
+        "/activeusers/" +
+        userId,
       {
         method: "POST",
         headers: {
@@ -135,7 +138,10 @@ export default function AdminRequests({ user }) {
   const denyUserToGroup = (userId, groupId) => {
     console.log("deny user" + userId + " to group" + groupId);
     fetch(
-      "http://localhost:3000/groups/" + groupId + "/pendingusers/" + userId,
+      "https://billowing-dawn-923.fly.dev/groups/" +
+        groupId +
+        "/pendingusers/" +
+        userId,
       {
         method: "DELETE",
         headers: {
