@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [username, setUsername] = useState(null);
@@ -30,7 +30,7 @@ export default function Signup() {
         return response.json();
       })
       .then(() => {
-        location.reload();
+        redirect("/");
       });
   };
 
