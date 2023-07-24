@@ -9,7 +9,10 @@ export default function JoinGroup({ userId, token, show, onHide }) {
     onHide();
     //send fetch request to join group
     fetch(
-      "http://localhost:3000/groups/" + groupName + "/pendingusers/" + userId,
+      "https://billowing-dawn-923.fly.dev/groups/" +
+        groupName +
+        "/pendingusers/" +
+        userId,
       {
         method: "POST",
         headers: {

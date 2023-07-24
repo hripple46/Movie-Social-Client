@@ -10,7 +10,7 @@ export default function Signup() {
   const createUser = (e) => {
     e.preventDefault();
     //send fetch request to create user
-    fetch("http://localhost:3000/users/signup", {
+    fetch("https://billowing-dawn-923.fly.dev/users/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export default function Signup() {
         return response.json();
       })
       .then(() => {
-        navigate("/");
+        location.reload();
       });
   };
 
