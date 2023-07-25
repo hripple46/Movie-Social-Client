@@ -23,6 +23,7 @@ export default function NewGroup({ user, token }) {
       })
       .then((data) => {
         console.log("Data: ", data);
+        location.reload();
       })
       .catch((err) => {
         console.log(err);

@@ -7,7 +7,7 @@ export default function GroupList({ userId, token, user }) {
   const [groups, setGroups] = useState([]);
   const [posts, setPosts] = useState([]);
   const [activeGroup, setActiveGroup] = useState({});
-  const [loadingPosts, setLoadingPosts] = useState(true);
+  const [loadingPosts, setLoadingPosts] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     getGroups();
