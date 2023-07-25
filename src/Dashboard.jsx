@@ -99,7 +99,9 @@ export default function Dashboard() {
   return (
     <div className="w-full h-full relative bg-gray-200">
       <div className="flex justify-between items-center fixed top-0 w-full z-20 bg-gray-200 text-black">
-        <button onClick={() => setJoinGroup(true)}>Join Group</button>
+        <button className="ml-1" onClick={() => setJoinGroup(true)}>
+          Join Group
+        </button>
 
         <NewGroup user={user} token={token} />
         <div className="flex">

@@ -10,6 +10,33 @@ export default function MovieDetails({
 }) {
   const [trailerKey, setTrailerKey] = useState("");
   const [summary, setSummary] = useState("");
+
+  const [iframeSize, setIframeSize] = useState({ width: "560", height: "315" });
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        // If the screen size is 768px or less, set iframe size to 370x208
+        setIframeSize({ width: "320", height: "180" });
+      } else {
+        // If the screen size is more than 768px, set iframe size to 560x315
+        setIframeSize({ width: "560", height: "315" });
+      }
+    }
+
+    // Call the function initially to set the size
+    handleResize();
+
+    // Subscribe to window resize events
+    window.addEventListener("resize", handleResize);
+
+    // Clean up function
+    return () => {
+      // Unsubscribe from window resize events
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // Empty dependency array ensures effect is only run on mount and unmount
+
   useEffect(() => {
     console.log * "Mivue", movie;
     console.log("Movie Id", movieId);
@@ -71,8 +98,8 @@ export default function MovieDetails({
     const url = "https://www.youtube.com/embed/" + trailerKey;
     return (
       <iframe
-        width="560"
-        height="315"
+        width={iframeSize.width}
+        height={iframeSize.height}
         src={url}
         title="YouTube video player"
         frameborder="0"

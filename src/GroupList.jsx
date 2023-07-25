@@ -127,7 +127,7 @@ export default function GroupList({ userId, token, user }) {
             </div>
           )}
           {<Posts posts={posts} currentUser={user} />}
-          <div className="fixed bottom-2 ml-2 w-1/2">
+          <div className="fixed bottom-2 md:ml-2 md:w-2/3 w-full md:right-0 left-0 md:left-auto ml-0 bg-gray-200">
             <NewPost group={activeGroup} user={user} token={token} />
           </div>
         </div>
