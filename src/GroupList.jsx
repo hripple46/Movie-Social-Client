@@ -12,6 +12,17 @@ export default function GroupList({ userId, token, user }) {
     getGroups();
   }, [userId, token]);
 
+  useEffect(() => {
+    //get active group from local storage
+    const storedGroup = localStorage.getItem("activeGroup");
+    //convert to object
+    const storedGroupObj = JSON.parse(storedGroup);
+    //if active group exists, get posts for that group
+    if (storedGroupObj) {
+      getPosts(storedGroupObj.id, storedGroupObj);
+    }
+  }, []);
+
   const getGroups = () => {
     //get groups from backend
     try {
@@ -45,6 +56,9 @@ export default function GroupList({ userId, token, user }) {
     setPosts([]);
     //set active group
     setActiveGroup(group);
+    console.log("Active Group", activeGroup);
+    //save activeGroup to local storage so that refresh doesn't clear it
+    localStorage.setItem("activeGroup", JSON.stringify(group));
     //get posts from backend
     try {
       fetch("https://billowing-dawn-923.fly.dev/groups/" + groupId + "/posts", {

@@ -128,9 +128,6 @@ export default function Dashboard() {
       </div>
       <div className="flex w-full pb-16 bg-gray-200 h-[calc(100vh-40px)]">
         <GroupList userId={userId} user={user} token={token} />
-        {
-          //will add posts here
-        }
       </div>
       <JoinGroup
         show={joinGroup}
