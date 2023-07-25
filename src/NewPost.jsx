@@ -58,11 +58,17 @@ export default function NewPost({ group, user, token }) {
       querySearch();
     }
   }, [search]); // Dependency array to control when the effect is run
+
+  function settingMovie(movie) {
+    setMovie(movie);
+    setSearch(null);
+    setResults([]);
+  }
   const getResults = () => {
     return results.map((result) => {
       return (
         <li
-          onClick={() => setMovie(result.title)}
+          onClick={() => settingMovie(result.title)}
           className="truncate"
           key={result.id}
         >

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function JoinGroup({ userId, token, show, onHide }) {
   const [groupName, setGroupName] = useState(null);
@@ -41,6 +41,13 @@ export default function JoinGroup({ userId, token, show, onHide }) {
           : `none`
       }`}
     >
+      {" "}
+      <p
+        className="text-xl absolute top-2 right-2 hover:cursor-pointer hover:text-red-500"
+        onClick={() => onHide()}
+      >
+        Close
+      </p>
       {show ? (
         <form
           className="
@@ -49,10 +56,11 @@ export default function JoinGroup({ userId, token, show, onHide }) {
           <label className="w-full" htmlFor="groupName">
             Group Name:
             <input
-              className="w-full bg-gray-200 rounded-md   "
+              className="border-2 border-black w-full bg-gray-200 rounded-md   "
               onChange={(e) => setGroupName(e.target.value)}
               type="text"
               name="groupName"
+              placeholder="ex. Group 1"
             />
           </label>
           <input
