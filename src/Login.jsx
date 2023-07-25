@@ -11,6 +11,7 @@ export default function Login() {
 
   //login user and set cookie
   const loginUser = (e) => {
+    setLoginError(null);
     e.preventDefault();
 
     fetch("https://billowing-dawn-923.fly.dev/users/login", {
@@ -51,15 +52,18 @@ export default function Login() {
       //navigate to '/' if error
       .catch((err) => {
         console.log(err);
+
         setLoginError(err.message);
 
-        location.reload();
+        //location.reload();
       });
   };
 
   return (
     <div className="w-full h-full border-2 flex flex-col items-center justify-center">
-      {loginError && <p>{loginError}</p>}
+      {loginError && (
+        <p className="absolute top-1/3 animate-bounce-short">{loginError}</p>
+      )}
       <form className="w-1/3 justify-center flex flex-col">
         <label className="w-full" htmlFor="username">
           Username:
