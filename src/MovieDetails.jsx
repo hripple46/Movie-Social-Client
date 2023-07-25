@@ -83,7 +83,7 @@ export default function MovieDetails({
   };
 
   return (
-    <div className="text-white fixed flex justify-center items-center inset-0 w-full h-full">
+    <div className="text-white fixed flex justify-center items-center inset-0 w-full z-50 h-full">
       <div className="z-50 relative">
         {trailerKey && youtubeVideo()}
         <p className={trailerKey ? "absolute" : "w-96"}>{summary}</p>
