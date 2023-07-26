@@ -98,6 +98,9 @@ export default function Login() {
         >
           Sign Up
         </button>
+        <button onClick={() => navigate("/forgot-password")}>
+          Forgot Password?
+        </button>
       </div>
     </div>
   );
