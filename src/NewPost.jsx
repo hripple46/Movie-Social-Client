@@ -145,7 +145,7 @@ export default function NewPost({ group, user, token }) {
           </label>
         </div>
         <button
-          className="w-1/4 bg-blue-600 text-white rounded-md"
+          className="w-1/4 bg-sky-300 text-white rounded-md"
           type="submit"
         >
           Post
