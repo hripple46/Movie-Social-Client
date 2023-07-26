@@ -2,8 +2,7 @@ import { useState } from "react";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
-  const resetUserPassword = (e) => {
-    e.preventDefaul();
+  const resetUserPassword = () => {
     //fetch reset password route
     try {
       fetch("https://billowing-dawn-923.fly.dev/users/reset", {
