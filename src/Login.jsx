@@ -98,7 +98,10 @@ export default function Login() {
         >
           Sign Up
         </button>
-        <button onClick={() => navigate("/forgot-password")}>
+        <button
+          className="ml-1 bg-red-200 pl-2 pr-2 rounded-md  hover:cursor-pointer"
+          onClick={() => navigate("/forgot-password")}
+        >
           Forgot Password?
         </button>
       </div>

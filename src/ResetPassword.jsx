@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
   const resetUserPassword = () => {
     //fetch reset password route
     try {
@@ -20,6 +21,7 @@ export default function ResetPassword() {
           throw new Error("Incorrect Credentials");
         }
         //if response is ok, return response
+        setEmailSent(true);
         return response.json();
       });
     } catch (err) {
@@ -30,6 +32,9 @@ export default function ResetPassword() {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
+      {emailSent ? (
+        <p className="text-green-500">Email Sent with Reset Link</p>
+      ) : null}
       <form
         onSubmit={(e) => {
           e.preventDefault();
