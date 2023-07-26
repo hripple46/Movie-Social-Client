@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export default function NewPassword() {
-  cosnt[(password, setPassword)] = useState("");
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userToken, setUserToken] = useState("");
 
@@ -10,6 +10,7 @@ export default function NewPassword() {
     //get token from url
 
     let { token } = useParams();
+    let tokenParam = token;
     console.log(tokenParam);
     setUserToken(tokenParam);
   }, []);
