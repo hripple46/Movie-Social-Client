@@ -31,8 +31,17 @@ export default function Signup() {
         //if response is ok, return response
         return response.json();
       })
+      .then((data) => {
+        if (data.errors) {
+          throw new Error("Email Not Valid");
+        }
+      })
+
       .then(() => {
         navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -41,6 +50,7 @@ export default function Signup() {
       <form className="w-1/3 justify-center flex flex-col">
         <label htmlFor="email">Email:</label>
         <input
+          className="w-full bg-gray-200 rounded-md "
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           name="email"
