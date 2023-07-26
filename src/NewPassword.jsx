@@ -18,8 +18,8 @@ export default function NewPassword() {
   const resetUserPassword = () => {
     //fetch reset password route
     fetch(
-      "https://billowing-dawn-923.fly.dev/users/reset-password/" + userToken
-    ),
+      "https://billowing-dawn-923.fly.dev/users/reset-password/" + userToken,
+
       {
         method: "POST",
         headers: {
@@ -29,15 +29,16 @@ export default function NewPassword() {
           password: password,
           confirmPassword: confirmPassword,
         }),
-      }.then((response) => {
-        //check if response is ok
-        if (!response.ok) {
-          //throw error if incorrect credentials
-          throw new Error("Incorrect Credentials");
-        }
-        //if response is ok, send user to login
-        navigate("/");
-      });
+      }
+    ).then((response) => {
+      //check if response is ok
+      if (!response.ok) {
+        //throw error if incorrect credentials
+        throw new Error("Incorrect Credentials");
+      }
+      //if response is ok, send user to login
+      navigate("/");
+    });
   };
 
   return (
