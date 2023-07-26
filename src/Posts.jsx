@@ -35,7 +35,7 @@ export default function Posts({ posts, currentUser }) {
         }`}
         key={post.id}
       >
-        <h3 className="text-black">
+        <h3 className="text-white">
           {post.user ? post.user.username : "Anonymous"}
           {post.post.recommends ? " recommends " : " does not recommend "}
           <h3
