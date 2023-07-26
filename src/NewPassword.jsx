@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function NewPassword() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userToken, setUserToken] = useState("");
@@ -34,8 +35,8 @@ export default function NewPassword() {
           //throw error if incorrect credentials
           throw new Error("Incorrect Credentials");
         }
-        //if response is ok, return response
-        return response.json();
+        //if response is ok, send user to login
+        navigate("/");
       });
   };
 
