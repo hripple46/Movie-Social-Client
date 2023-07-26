@@ -5,11 +5,10 @@ export default function NewPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userToken, setUserToken] = useState("");
-
+  let { token } = useParams();
   useEffect(() => {
     //get token from url
 
-    let { token } = useParams();
     let tokenParam = token;
     console.log(tokenParam);
     setUserToken(tokenParam);
