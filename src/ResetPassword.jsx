@@ -6,7 +6,7 @@ export default function ResetPassword() {
     e.preventDefaul();
     //fetch reset password route
     try {
-      fetch("https://billowing-dawn-923.fly.dev/users/reset-", {
+      fetch("https://billowing-dawn-923.fly.dev/users/reset", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
