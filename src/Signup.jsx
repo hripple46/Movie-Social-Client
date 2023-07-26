@@ -4,6 +4,7 @@ import { redirect, useNavigate } from "react-router-dom";
 export default function Signup() {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState(null);
 
   const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ export default function Signup() {
       body: JSON.stringify({
         username: username,
         password: password,
+        email: email,
       }),
     })
       .then((response) => {
@@ -37,6 +39,12 @@ export default function Signup() {
   return (
     <div className="absolute flex items-center justify-center w-full h-full">
       <form className="w-1/3 justify-center flex flex-col">
+        <label htmlFor="email">Email:</label>
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          name="email"
+        />
         <label className="w-full" htmlFor="username">
           Username:
           <input
