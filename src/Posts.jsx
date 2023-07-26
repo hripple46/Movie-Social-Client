@@ -26,7 +26,7 @@ export default function Posts({ posts, currentUser }) {
 
     return (
       <li
-        className={`p-4  rounded-lg bg-gray-600 text-white shadow-lg mb-4 w-fit ${
+        className={`p-4  rounded-lg bg-stone-900 text-white shadow-lg mb-4 w-fit ${
           post.user && currentUser._id === post.user._id
             ? "border-2 border-gray-300 ml-auto"
             : post.post.recommends
@@ -40,7 +40,7 @@ export default function Posts({ posts, currentUser }) {
           {post.post.recommends ? " recommends " : " does not recommend "}
           <h3
             onClick={() => movieOnClick(post.post.movie)}
-            className="inline text-blue-600 hover:cursor-pointer hover:text-amber-700"
+            className="inline text-blue-600 hover:cursor-pointer hover:underline"
           >
             {post.post.movie}
           </h3>
