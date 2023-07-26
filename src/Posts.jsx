@@ -53,7 +53,7 @@ export default function Posts({ posts, currentUser }) {
     renderMovieDetails(movie);
   };
   return (
-    <div className="pl-2 pr-2  ">
+    <div className="pl-2 pr-2  mb-10">
       <ul className="flex flex-col ">{displayPosts}</ul>
       {showMovie && (
         <>
