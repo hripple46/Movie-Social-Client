@@ -40,7 +40,7 @@ export default function Posts({ posts, currentUser }) {
           {post.post.recommends ? " recommends " : " does not recommend "}
           <h3
             onClick={() => movieOnClick(post.post.movie)}
-            className="inline text-sky-500 hover:cursor-pointer hover:underline"
+            className="inline text-sky-300 hover:cursor-pointer hover:underline"
           >
             {post.post.movie}
           </h3>
