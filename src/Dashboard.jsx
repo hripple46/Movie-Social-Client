@@ -40,31 +40,34 @@ export default function Dashboard() {
   //use hook to pull user information from cookie
   useEffect(() => {
     // Check if user is logged in
-    const cookie = getCookie("token");
-    setToken(cookie);
-    const cookie2 = getCookie("userId");
-    setUserId(cookie2);
-    setIsLoading(false); // After setting the token and userId, set isLoading to false
+    const getUserDetails = async () => {
+      const cookie = await getCookie("token");
+      setToken(cookie);
+      const cookie2 = await getCookie("userId");
+      setUserId(cookie2);
+      setIsLoading(false); // After setting the token and userId, set isLoading to false
 
-    // Get user name
-    const getUserName = (userId) => {
-      fetch("https://billowing-dawn-923.fly.dev/users/" + userId, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + token,
-        },
-      })
-        .then((response) => {
-          return response.json();
+      // Get user name
+      const getUserName = (userId) => {
+        fetch("https://billowing-dawn-923.fly.dev/users/" + userId, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
         })
-        .then((data) => {
-          console.log("User", data);
-          setUser(data);
-          setUsername(data.username);
-        });
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log("User", data);
+            setUser(data);
+            setUsername(data.username);
+          });
+      };
+      getUserName(userId);
     };
-    getUserName(userId);
+    getUserDetails();
   }, [navigate, token, userId]);
 
   //if no token or userId, redirect to '/'
