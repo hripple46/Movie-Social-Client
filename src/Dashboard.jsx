@@ -114,41 +114,160 @@ export default function Dashboard() {
           </svg>
 
           <div className="absolute pl-12 pr-12 top-6 right-0 left-0 bottom-0 overflow-y-scroll z-30">
-            <p>
-              Welcome, movie enthusiast, to our interactive web app! We've made
-              a neat, vibrant space for you to share and discover movie
-              recommendations with friends. Here's a quick rundown on how to get
-              the film reels rolling. When you first join, your left sidebar
-              will seem rather lonely - devoid of any groups. Don't worry! This
-              is your cue to create one. Just click on "New Group", kind of like
-              you're about to write the next blockbuster's title. Type in your
-              chosen name and hit 'Submit'. Voila! You'll see the group appear
-              in the left sidebar, like your name in shining movie credits. Give
-              the group you've just created a click and you'll notice the right
-              side of the page looks empty. That's because it's the canvas for
-              your upcoming film reviews. Wander down to the bottom of the page
-              and start typing a movie name - just like magic, results will
-              automatically appear! Spot the movie you're thinking of? Click on
-              it to select. Now for the real fun part: it's time to be the
-              critic. Do you recommend this movie to your friends or not? Click
-              the thumbs up button to give it your seal of approval or the
-              thumbs down button to suggest they spend their time elsewhere.
-              Once you've made your decision, hit 'Submit' and behold as your
-              post populates in the group. Want to know more about a movie
-              someone else posted? Simply click on the blue title of the movie
-              in the post. This will conjure up a nifty preview and a quick
-              summary. No more endless scrolling or looking up reviews. We've
-              got you covered. Now, what's a movie without an audience? When
-              you're ready to invite friends to join your movie group, simply
-              have them type in the exact name of your group (capital letters
-              and all!) and send a request. As the director of this group, you
-              get to approve or deny these requests. The next time you log in, a
-              notification will be waiting for you on the top right corner of
-              your screen. It's like your own little red carpet - click on it to
-              see any pending requests for your group. That's it! You're ready
-              to run the show. Lights, camera, action! Enjoy discovering and
-              sharing the magic of cinema on our web app.
-            </p>
+            <ul className="flex flex-col items-center">
+              Welcome to our cinematic playground! It's your turn to direct.
+              <li className="flex items-center mb-2 mt-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  Start with an empty left sidebar: this is your 'New Group'
+                  button cue.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  Create a group by typing a catchy name, hit 'Submit' and see
+                  your blockbuster title in the sidebar.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  Click the group: right side is your movie review canvas.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  Type a movie name at the bottom to get auto-results. Click to
+                  select the right film.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  Critic time! Thumbs up to recommend, thumbs down for a pass.
+                  Hit 'Submit' to post.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  Intrigued by a movie someone posted? Click the blue title for
+                  a preview and summary.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  Ready to gather an audience? Have friends request to join by
+                  typing your group name.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  As director, you approve or deny requests. Await your 'red
+                  carpet' notification top right.
+                </p>
+              </li>
+              <li className="flex items-center mb-2 w-full">
+                <div className="mr-2 w-1/8">
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                  >
+                    <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
+                  </svg>
+                </div>
+                <p className="w-2/3">
+                  You're set! It's lights, camera, action on your movie journey.
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
       )}
