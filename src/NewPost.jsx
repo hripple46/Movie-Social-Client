@@ -69,10 +69,18 @@ export default function NewPost({ group, user, token }) {
       return (
         <li
           onClick={() => settingMovie(result.title)}
-          className="truncate"
+          className="mb-2 flex justify-between hover:cursor-pointer "
           key={result.id}
         >
           {result.title}
+          {result.poster_path ? (
+            <img
+              className="w-10 h-15"
+              src={"https://image.tmdb.org/t/p/original" + result.poster_path}
+            />
+          ) : (
+            <p className="w-10 ">No Poster</p>
+          )}
         </li>
       );
     });
@@ -97,7 +105,7 @@ export default function NewPost({ group, user, token }) {
             }}
           />
           {search && results.length > 0 && (
-            <ul className="absolute bottom-full left-0 w-60 bg-gray-200 p-1 rounded-md">
+            <ul className="absolute bottom-full left-0 w-60 bg-stone-900/75 text-white shadow-lg rounded-lg p-2 ">
               {getResults()}
             </ul>
           )}
