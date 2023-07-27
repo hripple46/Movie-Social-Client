@@ -128,7 +128,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   Start with an empty left sidebar: this is your 'New Group'
                   button cue.
                 </p>
@@ -145,7 +145,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   Create a group by typing a catchy name, hit 'Submit' and see
                   your blockbuster title in the sidebar.
                 </p>
@@ -162,7 +162,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   Click the group: right side is your movie review canvas.
                 </p>
               </li>
@@ -178,7 +178,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   Type a movie name at the bottom to get auto-results. Click to
                   select the right film.
                 </p>
@@ -195,7 +195,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   Critic time! Thumbs up to recommend, thumbs down for a pass.
                   Hit 'Submit' to post.
                 </p>
@@ -212,7 +212,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   Intrigued by a movie someone posted? Click the blue title for
                   a preview and summary.
                 </p>
@@ -229,7 +229,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   Ready to gather an audience? Have friends request to join by
                   typing your group name.
                 </p>
@@ -246,7 +246,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   As director, you approve or deny requests. Await your 'red
                   carpet' notification top right.
                 </p>
@@ -263,7 +263,7 @@ export default function Dashboard() {
                     <path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h520q24 0 42 18t18 42v215l160-160v410L720-435v215q0 24-18 42t-42 18H140zm0-60h520v-520H140v520zm0 0v-520 520z"></path>
                   </svg>
                 </div>
-                <p className="w-2/3">
+                <p className="w-auto">
                   You're set! It's lights, camera, action on your movie journey.
                 </p>
               </li>
