@@ -60,7 +60,6 @@ export default function Dashboard() {
             return response.json();
           })
           .then((data) => {
-            console.log("User", data);
             setUser(data);
             setUsername(data.username);
           });

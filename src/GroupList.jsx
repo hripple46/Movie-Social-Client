@@ -38,7 +38,6 @@ export default function GroupList({ userId, token, user }) {
           return response.json();
         })
         .then((data) => {
-          console.log("Groups", data);
           return data.groupNames;
         })
         .then((groupNames) => {
@@ -59,7 +58,6 @@ export default function GroupList({ userId, token, user }) {
     setPosts([]);
     //set active group
     setActiveGroup(group);
-    console.log("Active Group", activeGroup);
     //save activeGroup to local storage so that refresh doesn't clear it
     localStorage.setItem("activeGroup", JSON.stringify(group));
     //get posts from backend

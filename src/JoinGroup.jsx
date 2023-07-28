@@ -23,9 +23,7 @@ export default function JoinGroup({ userId, token, show, onHide }) {
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        console.log("Data: ", data);
-      })
+      .then((data) => {})
       .catch((err) => {
         console.log(err);
       });

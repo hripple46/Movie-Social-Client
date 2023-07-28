@@ -29,7 +29,6 @@ export default function AdminRequests({ user }) {
     if (!user) {
       return;
     } else {
-      console.log(user);
       //flatten the array of pending users
 
       const promises = async () => {
@@ -44,12 +43,10 @@ export default function AdminRequests({ user }) {
             })
               .then((res) => res.json())
               .then((group) => {
-                console.log(group);
                 return { group: group, users: group.pendingUsers };
               });
           })
         ).then((data) => {
-          console.log(data);
           setPendingRequests(data);
         });
       };
@@ -96,7 +93,6 @@ export default function AdminRequests({ user }) {
   // Click outside to hide pending users
   useEffect(() => {
     function handleClickOutside(event) {
-      console.log("ref", event.target);
       if (ref.current && !ref.current.contains(event.target)) {
         if (!event.target.matches(".logout-button")) {
           setShowPending(false);
@@ -114,7 +110,6 @@ export default function AdminRequests({ user }) {
 
   //function to approve user request and add to group
   const addUserToGroup = (userId, groupId) => {
-    console.log("add user" + userId + " to group" + groupId);
     fetch(
       "https://billowing-dawn-923.fly.dev/groups/" +
         groupId +
@@ -130,7 +125,6 @@ export default function AdminRequests({ user }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setShowPending(false);
       });
     location.reload();
@@ -138,7 +132,6 @@ export default function AdminRequests({ user }) {
 
   //this function will deny the user request
   const denyUserToGroup = (userId, groupId) => {
-    console.log("deny user" + userId + " to group" + groupId);
     fetch(
       "https://billowing-dawn-923.fly.dev/groups/" +
         groupId +
@@ -162,8 +155,6 @@ export default function AdminRequests({ user }) {
   //this function will show the pending users
   const showPendingUsers = () => {
     if (pendingUserDetails) {
-      console.log(pendingUserDetails);
-
       return (
         showPending && (
           <div
@@ -240,7 +231,6 @@ export default function AdminRequests({ user }) {
       return;
     }
   };
-  console.log(pendingRequests);
   return (
     <>
       {pendingRequests ? (

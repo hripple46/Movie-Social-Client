@@ -38,8 +38,6 @@ export default function MovieDetails({
   }, []); // Empty dependency array ensures effect is only run on mount and unmount
 
   useEffect(() => {
-    console.log * "Mivue", movie;
-    console.log("Movie Id", movieId);
     if (movieId === null) {
       return;
     }
@@ -55,13 +53,11 @@ export default function MovieDetails({
         return data.results;
       })
       .then((results) => {
-        console.log("Movie Videos Results", results);
         if (results.find(findTrailer) === undefined) {
           setTrailerKey("");
           return;
         }
 
-        console.log(results.find(findTrailer));
         setTrailerKey(results.find(findTrailer).key);
       });
   }, [movieId]);
@@ -75,7 +71,6 @@ export default function MovieDetails({
         return response.json();
       })
       .then((data) => {
-        console.log("Movie Details", data);
         if (data.overview === "") {
           setSummary("No summary available");
           return;

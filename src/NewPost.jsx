@@ -9,11 +9,8 @@ export default function NewPost({ group, user, token }) {
   const [userRecommend, setUserRecommend] = useState(null);
   const [selected, setSelected] = useState(null);
 
-  console.log(userRecommend);
-
   const submitPost = (e) => {
     e.preventDefault();
-    console.log("Group", group);
     fetch("https://billowing-dawn-923.fly.dev/groups/" + group.id + "/posts", {
       method: "POST",
       headers: {
@@ -31,12 +28,9 @@ export default function NewPost({ group, user, token }) {
         return response.json();
       })
       .then((data) => {
-        console.log("New Post", data);
         //refresh posts
         location.reload();
       });
-
-    console.log("User submitted post to" + group.name);
   };
   async function querySearch() {
     fetch(
@@ -48,9 +42,7 @@ export default function NewPost({ group, user, token }) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setResults(data.results.slice(0, 5));
-        console.log("New Post", data);
       });
   }
   useEffect(() => {

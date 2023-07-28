@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export default function NewGroup({ user, token }) {
   const [showForm, setShowForm] = useState(false);
-  console.log("User", user);
   const submitNewGroup = (e) => {
     e.preventDefault();
     setShowForm(false);
@@ -22,7 +21,6 @@ export default function NewGroup({ user, token }) {
         return response.json();
       })
       .then((data) => {
-        console.log("Data: ", data);
         location.reload();
       })
       .catch((err) => {

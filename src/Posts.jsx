@@ -22,8 +22,6 @@ export default function Posts({ posts, currentUser }) {
   };
 
   const displayPosts = posts.map((post) => {
-    console.log("Post", post);
-
     return (
       <li
         className={`p-4  rounded-lg bg-stone-900/75 text-white shadow-lg mb-4 w-fit ${
