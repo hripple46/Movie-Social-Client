@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ThumbDownIcon from "./assets/ThumbDownIcon";
 import ThumbUpIcon from "./assets/ThumbUpIcon";
 
@@ -8,6 +8,27 @@ export default function NewPost({ group, user, token }) {
   const [movie, setMovie] = useState("");
   const [userRecommend, setUserRecommend] = useState(null);
   const [selected, setSelected] = useState(null);
+
+  const searchRef = useRef(null);
+  //add ref for input value
+  const inputRef = useRef(null);
+
+  //use eventhadnler to determine if click is outside of search bar and if so, set search to null
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearch("");
+        setResults([]);
+        //set movie to ""
+        setMovie("");
+        //set input value to ""
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchRef]);
 
   const submitPost = (e) => {
     e.preventDefault();
@@ -79,13 +100,18 @@ export default function NewPost({ group, user, token }) {
   };
 
   return (
-    <div className="w-full h-10">
+    <div
+      //add ref here
+      ref={searchRef}
+      className="w-full h-10"
+    >
       <form
         className="flex justify-between w-full h-full"
         onSubmit={(e) => submitPost(e)}
       >
         <div className="w-1/3 h-full relative">
           <input
+            ref={inputRef}
             className="w-full h-full border-gray-400 border-2 rounded-md"
             type="text"
             placeholder="Avatar"
