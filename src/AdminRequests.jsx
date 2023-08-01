@@ -126,8 +126,10 @@ export default function AdminRequests({ user }) {
       .then((res) => res.json())
       .then((data) => {
         setShowPending(false);
+      })
+      .then(() => {
+        location.reload();
       });
-    location.reload();
   };
 
   //this function will deny the user request
@@ -148,8 +150,10 @@ export default function AdminRequests({ user }) {
       .then((res) => res.json())
       .then((data) => {
         setShowPending(false);
+      })
+      .then(() => {
+        location.reload();
       });
-    location.reload();
   };
 
   //this function will show the pending users
